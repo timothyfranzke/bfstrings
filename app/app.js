@@ -1,0 +1,1 @@
+var bfApp = angular.module('bfApp', ['ui.router', 'ngCookies', 'ap.fotorama', 'ngMaterial', 'ngMessages', 'ngAnimate', 'ngWig', 'ImageCropper']);

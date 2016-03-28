@@ -1,0 +1,70 @@
+<md-content>
+    <div layout="row" layout-align="end" layout-padding>
+        <md-input-container>
+            <label>Sort Inventory</label>
+            <md-select ng-model="filter" ng-change="runFilter(filter)" placeholder="Sort Inventory">
+                <md-option value="PriceAsec">Price: Low to High</md-option>
+                <md-option value="PriceDesc">Price: High to Low</md-option>
+                <md-option value="AZ">A to Z</md-option>
+                <md-option value="ZA">Z to A</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label><md-icon class="material-icon">search</md-icon>Search</label>
+            <input ng-model="searchValue" ng-change="search(searchValue)"/>
+        </md-input-container>
+    </div>
+    <div layout-align="center">
+        <!--md-grid-list
+                md-cols="3" md-cols-sm="3" md-cols-md="3" md-cols-gt-md="3"
+                md-row-height-gt-md="2:1" md-row-height="2:1">
+            <md-grid-tile ng-repeat="item in items"
+                          md-rowspan="1"
+                          md-colspan="1"
+                          md-colspan-sm="1" layout-align="center start">
+                <div class="catThumb" layout="row">
+                    <img ng-src="img/inventory/{{item.id}}/1.png" />
+                </div>
+                <div layout="column">
+                    <h3>{{item.name}}</h3>
+                    <div layout="row">
+                        <md-button class="md-primary">View</md-button>
+                        <md-button layout-padding ng-disabled="true">${{item.price}}</md-button>
+                    </div>
+                </div>
+            </md-grid-tile-->
+
+        <div class="catItem" ng-repeat="item in items">
+            <div class="catThumb">
+                <img class="md-whiteframe-3dp" ng-src="img/inventory/{{item.id}}/1.png" />
+            </div>
+            <h3>{{item.name}}</h3>
+            <a href="#/inventory/{{item.id}}" class="viewButton">View</a> <div class="priceButton">${{item.price}}</div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <!--div class="sideNav">
+        <div class="instrument" >
+            <span class="clickable" ng-click="filterBanjo()"><img src="img/bg/banjos.png" alt="Banjos"/></span>
+            <span class="instLink" ng-click="filterBanjo()">
+                &#65515; Banjos
+            </span>
+        </div>
+
+        <div class="instrument">
+            <span class="clickable" ng-click="filterMando()"><img src="img/bg/mandolins.png" alt="Mandolins"/></span>
+            <span class="instLink" ng-click="filterMando()">
+                &#65515; Mandolins
+            </span>
+        </div>
+
+        <div class="instrument lastBox">
+            <span class="clickable" ng-click="filterGuitar()"><img src="img/bg/guitars.png" alt="Guitars"/></span>
+            <span class="instLink" ng-click="filterGuitar()">
+                &#65515; Guitars
+            </span>
+        </div>
+        <div class="clear"></div>
+    </div-->
+</md-content>

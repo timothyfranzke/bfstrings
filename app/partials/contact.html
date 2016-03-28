@@ -1,0 +1,62 @@
+<md-content layout="row" layout-align="center start">
+    <div layout="column" layout-align="start" style="width:50%">
+        <h1><md-icon class="material-icon">contact_mail</md-icon> Contact Us</h1>
+        <md-input-container>
+            <label>Question</label>
+            <md-select ng-model="contact.question">
+                <md-option ng-value="option.value" ng-repeat="option in options">{{option.value}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-show="contact.question!=='General Question'">
+            <label>Instrument Type</label>
+            <md-select ng-model="contact.itemType" ng-change="getItems(contact.itemType)">
+                <md-option ng-value="option.value" ng-repeat="option in instrumentTypes">{{option.value}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>First Name</label>
+            <input type="text" ng-model="contact.firstName">
+        </md-input-container>
+        <md-input-container>
+            <label>Last Name</label>
+            <input type="text" ng-model="contact.lastName">
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" ng-model="contact.email">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Comments</label>
+            <textarea ng-model="user.biography" md-maxlength="150" rows="5" cols="3" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-button class="md-primary">Send <md-icon class="material-icon">send</md-icon></md-button>
+    </div>
+</md-content>
+
+<div id="instWrap">
+    <div id="catalogue">
+        <h1>Contact Us</h1>
+        <label for="questionType">Question: </label>
+        <select id="questionType" class="contact"  ng-options="i.value as i.value for i in options" ng-model="contact.question"></select><br/><br/>
+        <span ng-show="contact.question!=='General Question'" ><label for="itemType">Type: </label><select id="itemType" class="contact"ng-options="i.value as i.value for i in instrumentTypes" ng-model="contact.itemType" ng-change="getItems(contact.itemType)"></select></span><br/><br/>
+        <span ng-show="contact.itemType"><label for="itemType">Instrument: </label><select class="contact" ng-options="i.name as i.name for i in items" ng-model="contact.itemName"></select></span>
+        <hr>
+        <form>
+            <input type="text" class="contact" placeholder="First Name" ng-model="contact.firstName"><br/><br/>
+            <input type="text" class="contact" placeholder="Last Name" ng-model="contact.lastName"><br/><br/>
+            <input type="text" class="contact" placeholder="Email" ng-model="contact.email"><br/><br/>
+            <textarea rows="4" cols="50" placeholder="Comment" ng-model="contact.body" style="margin: 0px; width: 75%; height: 175px;"></textarea>
+            <br/>
+            <br/>
+            <input type="submit" style="cursor:pointer" class="viewButton" value="Send" ng-click="sendEmail(contact)">
+        </form>
+
+
+
+        <div class="clear"></div>
+
+    </div>
+
+    <div class="clear"></div>
+
+</div>
