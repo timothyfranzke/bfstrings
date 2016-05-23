@@ -1,5 +1,11 @@
 <div id="instWrap">
-    <a href="#/admin/inventory/new" class="viewButton">Add Item</a>
+    <div class="breadCrumbs">
+        <div class="searchBar">
+            <a href="#/admin/inventory/new" class="viewButton">Add Item</a>
+            <input type="text" class="search" placeholder="Search" ng-model="searchValue" ng-change="search(searchValue)"></div>
+
+    </div>
+
     <div id="catalogue">
         <div class="catItem" ng-repeat="item in items">
             <div class="catThumb">

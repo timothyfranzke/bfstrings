@@ -31,7 +31,7 @@ for($i = 0; $i < $imageCount; $i++)
 
 function UpdateImage($folderId, $id, $active)
 {
-if ($active == 1)
+if ($active == 1 || $active)
 {
 $query = "UPDATE Image SET active=" . $active . " WHERE itemId = ". $id  . " AND folderId = " .$folderId;
 }
@@ -39,8 +39,6 @@ else
 {
 $query = "UPDATE Image SET active=0 WHERE itemId = ". $id  . " AND folderId = " .$folderId;
 }
-	
-echo $query;
     ///$query = "UPDATE `Inventory` SET `ImageCount`=$imgCount WHERE Id = $id";
     mysql_query($query);
 }

@@ -5,18 +5,11 @@ bfApp.config(function($urlRouterProvider, $stateProvider, $locationProvider){
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'app/partials/home.html',
-            controller: 'inventoryController'
+            templateUrl: 'app/partials/home.html'
         })
         .state('fretshop', {
             url: '/fretshop',
-            templateUrl: 'app/partials/fretShop.html',
-            controller: 'inventoryController'
-        })
-        .state('events', {
-            url: '/events',
-            templateUrl: 'app/partials/events.html',
-            controller: 'eventsController'
+            templateUrl: 'app/partials/fretShop.html'
         })
         .state('contact', {
             url:'/contact',
@@ -31,6 +24,11 @@ bfApp.config(function($urlRouterProvider, $stateProvider, $locationProvider){
             url: '/inventory/:id',
             templateUrl: 'app/partials/item.html',
             controller: 'itemController'
+        })
+        .state('events', {
+            url: '/events',
+            templateUrl: 'app/partials/events.html',
+            controller: 'eventsController'
         })
         .state('admin', {
             url: '/admin',
@@ -56,6 +54,14 @@ bfApp.config(function($urlRouterProvider, $stateProvider, $locationProvider){
             url:'/description',
             templateUrl: 'app/partials/admin/description.html',
             controller:'itemDescriptionController'
+        })
+        .state('policy', {
+            url:'/policy',
+            templateUrl: 'app/partials/policy.html'
+        })
+        .state('about', {
+            url:'/about',
+            templateUrl:'app/partials/about.html'
         });
     $urlRouterProvider.otherwise('/');
 

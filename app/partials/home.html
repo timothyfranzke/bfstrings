@@ -1,42 +1,43 @@
-<div id="mainImage">
-    <img src="img/bg/bg.png" alt="Purveyors and makers of fine banjos, mandolins and guitars."/>
-</div>
 
-<div id="featured">
+<div layout="row">
+
+    <div id="fixIt">
+        <div class="fixHolder">
+            <img src="img/bg/fix.jpg" alt="We can fix it"/>
+        </div>
+        <div class="fixText">
+            <p>Our complete repair shop is now up and running. From refrets and neck resets to vintage restoration and custom instrument builds. Luthiers Mark Franzke and Ted Kritikos are ready to tackle whatever you bring us. We'll make that old guitar play like butter or bring that old banjo back to life. Bring it in and let's have a look!</p>
+        </div>
+    </div>
+</div>
+<!--div id="featured">
     <div class="instrument">
-        <a ui-sref="banjos"><img src="img/bg/banjos.png" alt="Banjos"/></a>
-        <a class="instLink" ui-sref="banjos">
+        <span class="clickable" ng-click="filterBanjo()"><img src="img/bg/banjos.png" alt="Banjos"/></span>
+        <span class="instLink clickable" ng-click="filterBanjo()">
             &#65515; Banjos
-        </a>
+        </span>
     </div>
 
     <div class="instrument">
-        <a ui-sref="mandos"><img src="img/bg/mandolins.png" alt="Mandolins"/></a>
-        <a class="instLink" ui-sref="manods">
+        <span class="clickable" ng-click="filterMando()"><img src="img/bg/mandolins.png" alt="Mandolins"/></span>
+        <span class="instLink clickable" ng-click="filterMando()">
             &#65515; Mandolins
-        </a>
+        </span>
     </div>
 
     <div class="instrument lastBox">
-        <a ui-sref="guitars"><img src="img/bg/guitars.png" alt="Guitars"/></a>
-        <a class="instLink" ui-sref="guitars">
+        <span class="clickable" ng-click="filterGuitar()"><img src="img/bg/guitars.png" alt="Guitars"/></span>
+        <span class="instLink clickable " ng-click="filterGuitar()">
             &#65515; Guitars
-        </a>
+        </span>
     </div>
     <div class="clear"></div>
-</div>
+</div-->
 
-<div id="fixIt">
-    <div class="fixHolder">
-        <img src="img/bg/fix.jpg" alt="We can fix it"/>
-    </div>
-    <div class="fixText">
-        <p>Our complete repair shop is now up and running. From refrets and neck resets to vintage restoration and custom instrument builds. Luthiers Mark Franzke and Ted Kritikos are ready to tackle whatever you bring us. We'll make that old guitar play like butter or bring that old banjo back to life. Bring it in and let's have a look!</p>
-    </div>
-</div>
+
 
 <div id="location">
-    <div class="locationLeft md-whiteframe-3dp">
+    <div class="locationLeft">
         <img src="img/bg/shop.jpg"/>
     </div>
 

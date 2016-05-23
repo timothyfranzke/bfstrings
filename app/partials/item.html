@@ -1,23 +1,31 @@
-<div layout="row" layout-align="center">
-    <h1>{{item.name}}</h1>
-</div>
-<div layout-gt-sm="space around" layout-lt-md="column" layout-align="center start" layout-padding >
-    <div class="md-whiteframe-1dp" layout="column" ng-class="classes.img">
-        <div class="fotorama" data-nav="thumbs">
-            <img ng-repeat="image in images" ng-src="img/inventory/{{image.folderId}}/{{image.itemId}}.png">
-        </div>
-        <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+<div layout="row">
+    <div layout="column" layout-gt-md="row" >
+            <div layout="row" layout-align="center" layout-padding>
+                <div class="fotorama" data-nav="thumbs" style="width:300px">
+                    <img ng-repeat="image in images" ng-src="img/inventory/{{image.folderId}}/{{image.itemId}}.png">
+                </div>
+                <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+            </div>
+            <div layout="column" layout-padding layout-margin>
+                <h1>{{item.name}} </h1>
+                <p data-ng-bind-html="description"  >{{description}}</p>
+                <div class="price">${{item.price}}</div>
+                <div layout="row" layout-align="space-around">
+                    <md-button  class="backButton">
+                        Back to {{type}}
+                    </md-button>
+                    <md-button ng-click="openInquire(item)"  class="backButton">
+                        Inquire
+                    </md-button>
+                </div>
+            </div>
+        <div>
     </div>
-    <div layout="column" layout-lt-md="column" layout-align="center center" ng-class="classes.desc">
-        <p >{{item.description}}</p>
-        <div class="price md-whiteframe-2dp">${{item.price}}</div>
-        <div layout="row">
-            <md-button class="md-primary md-raised backButton" ng-click="contact(item)">Inquire</md-button>
-            <md-button class="md-raised backButton"><md-icon class="material-icons">left</md-icon> Back to {{type}}</a></md-button>
-        </div>
-    </div>
-    <div layout="column" class="md-whiteframe-3dp" layout-align="center" ng-class="classes.recent">
+
+    <md-divider></md-divider>
+    <div layout="column" layout-padding ng-show="isLargeScreen">
         <h2>Recently Viewed</h2>
         <div class="recentItem" ng-repeat="rvItem in recentlyViewed">
             <div class="recentThumb">
@@ -28,4 +36,7 @@
             <div class="clear"></div>
         </div>
     </div>
+
+    <div class="clear"></div>
+
 </div>

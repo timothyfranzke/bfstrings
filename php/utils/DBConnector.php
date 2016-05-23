@@ -57,22 +57,22 @@ class DBConnector {
 function DBConnection()
 
 {
+    $server = 'localhost';
+    //$server = 'mfranzke.powwebmysql.com';
 
-    $server = '127.0.0.1';
-
-//$dbusername = 'franzke_race';
-
-
+//        $dbusername = 'franzke_race';
 
 
 
-    $dbusername = 'root';
-
-    $dbpassword = '';
 
 
+    $dbusername = 'bfstrings';
 
-    $db = mysql_connect($server, $dbusername);
+    $dbpassword = 'Neqm3dBkmKVDkZTq5rdB';
+
+
+
+    $db = mysql_connect($server, $dbusername, $dbpassword);
 
 
 

@@ -1,21 +1,18 @@
 /**
  * Created by Timothy on 8/4/2015.
  */
-bfApp.controller('itemController', function($stateParams, $scope, $state, inventoryService, $cookies, $mdMedia){
-    $scope.classes ={
-        img:'imageSection',
-        desc:'descSection',
-        recent:'recentlySection'
+bfApp.controller('itemController', function($stateParams, $mdToast, $scope, $mdMedia, $sce, $state, inventoryService, $cookies, $mdDialog, $http){
+    var showToast = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent(message)
+                .position("top right")
+                .hideDelay(3000)
+
+        );
     };
-        if(!$mdMedia('gt-sm'))
-        {
-            alert("True");
-            $scope.classes ={
-                img:'',
-                desc:'',
-                recent:''
-            };
-        }
+    $scope.isLargeScreen = $mdMedia('gt-md');
+    console.log($scope.isLargeScreen);
     $scope.items = [];
     $scope.options = {
         width: '100%',
@@ -26,6 +23,31 @@ bfApp.controller('itemController', function($stateParams, $scope, $state, invent
     };
     $scope.item = {};
     $scope.recentlyViewed = [];
+    $scope.isSmallScreen = $mdMedia('sm');
+    $scope.openInquire = function(item){
+        inventoryService.setInquiredInstrument(item);
+        console.log(item);
+        $mdDialog.show({
+            controller: 'contactController',
+            templateUrl: 'app/partials/dialog/contact.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose:true,
+            fullscreen: true
+        }).then(function(email){
+            var request = {
+                url: 'php/Email.php',
+                method: 'POST',
+                data: contact
+            };
+
+            $http(request)
+                .success(function (data) {
+                    showToast("Your inquiry has been sent.  Thank you!")
+                })
+                .error(function (data, status) {
+                });
+        })
+    };
 
     inventoryService.getImage($stateParams.id).then(function(data){
         //var fotoramaImages = [];
@@ -45,6 +67,7 @@ bfApp.controller('itemController', function($stateParams, $scope, $state, invent
     inventoryService.getItemById($stateParams.id).then(function(data)
     {
         $scope.item = data;
+		$scope.description = $sce.trustAsHtml($scope.item.description);
 
         //$scope.item.type ="Banjo";
         if ($cookies.get("itemTwo") !== undefined)

@@ -1,6 +1,7 @@
 <div id="instWrap">
 
     <div class="itemDescription" ng-show="showMainEdit">
+        <h2 ng-show="!!item.id">ID: {{item.id}}</h2>
 	
         <label>Name</label>
 
@@ -32,7 +33,7 @@
 
         <div ng-repeat="img in images" ng-show="!!item.id">
 
-            <img ng-src="img/inventory/{{img.folderId}}/{{img.itemId}}.png" idth="10%" height="10%"/>
+            <img ng-src="img/inventory/{{img.folderId}}/{{img.itemId}}.png" width="25%" height="25%"/>
 
             <input type="checkbox" ng-model="img.active"/><br/>
 

@@ -1,82 +1,118 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html >
 <head>
-    <!--base href="/BradfordFranzke/"-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <title>Bradford & Franzke Fine Instruments</title>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="css/ng-wig.css" rel="stylesheet" type="text/css">
     <link href="libs/image-crop-styles.css" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!--link href="css/style.css" rel="stylesheet" type="text/css"-->
     <script src="//use.typekit.net/vqm1aau.js"></script>
-    <script>try{Typekit.load();}catch(e){}</script>
+    <!--script>try{Typekit.load();}catch(e){}</script-->
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-       <script src="bower_components/angular/angular.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
     <script src="libs/image-crop.js"></script>
     <script src="libs/ap.fotorama.js"></script>
-    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+    <!-- 3 KB -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 </head>
 
 <body ng-app="bfApp" ng-controller="inventoryController">
-
-<div layout="row" layout-align="end" layout-padding>
-        <div ng-show="media('gt-sm')">
-            <md-button><a ui-sref="about">About</a></md-button>
-            <md-menu>
-                <md-button md-menu-origin ng-click="$mdOpenMenu()" ng-show="media('gt-sm')">Current Inventory</md-button>
-                <md-menu-content width="2">
-                    <md-menu-item>
-                        <md-button>Banjos</md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button>Mandolins</md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button>Guitars</md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button>Other Instruments</md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-            <md-button><a ui-sref="policy">Policies</a></md-button>
-            <md-button><a ui-sref="contact" >Contact Us</a></md-button>
-            <md-button>Merchendise</md-button>
-        </div>
-        <md-menu>
-            <md-button md-menu-origin ng-click="$mdOpenMenu()" ng-hide="media('gt-sm')"><md-icon class="material-icons" ng-class="md-48">menu</md-icon></md-button>
-            <md-menu-content width="2">
-                <md-menu-item>
-                    <md-button>About</md-button>
-                </md-menu-item>
-                <md-menu-item>
-                    <md-button>Instruments</md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
+<md-button ng-click="toggleLeft()" ng-hide="isSmallScreen"><md-icon class="material-icons">menu</md-icon></md-button>
+<div layout="row" class="header" ng-if="!isHome">
+    <img src="img/bg/headerImg.jpg" alt="Bradford Franzke Stringed Instruments"/>
 </div>
-<md-divider></md-divider>
-<ui-view></ui-view>
+<div id="mainImage" layout="row" ng-if="isHome">
+    <img src="img/bg/header.jpg" alt="Purveyors and makers of fine banjos, mandolins and guitars."/>
+</div>
+<div layout="row" ng-if="false">
+    <!--div layout="row" flex="50" layout-align="start">
+        <a ui-sref="home"><img src="img/bg/bradford-franzke.png" alt="Bradford & Franzke Fine Instruments" /></a>
+    </div-->
+
+    <div id="nav" layout="row" layout-align="end">
+        <ul>
+            <li><a ui-sref="about">About</a></li>
+            <li><a class="clickable" ng-click="navInventory()">Instruments</a>
+                <ul>
+                <!--li><a href="guitars.php">All</a><--/li-->
+                    <li><a class="clickable" ng-click="filterBanjo()">Banjos</a></li>
+                    <li><a class="clickable" ng-click="filterMando()">Mandolins</a></li>
+                    <li><a class="clickable" ng-click="filterGuitar()">Guitars</a></li>
+                    <li><a class="clickable" ng-click="filterOther()">Other Instruments</a></li>
+                </ul>
+            </li>
+            <li><a ui-sref="policy">Policy</a></li>
+            <li><a ui-sref="contact" >Contact Us</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div layout="row">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-content layout="column" layout-padding >
+                <md-input-container ng-if="!isHome">
+                    <label>Filter</label>
+                    <md-select ng-model="filter" ng-change="runFilter(filter)">
+                        <md-option value="PriceAsec">Price: Low to High</md-option>
+                        <md-option value="PriceDesc">Price: High to Low</md-option>
+                        <md-option value="AZ">A to Z</md-option>
+                        <md-option value="ZA">Z to A</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Search</label>
+                    <input type="text" class="search" ng-model="searchValue" ng-change="search(searchValue)">
+                </md-input-container>
+            <md-button md-no-ink style="background-color:#F5BA42" class="md-whiteframe-3dp" layout="row" ng-click="filterGuitar()">
+                GUITARS
+            </md-button>
+            <md-button md-no-ink style="background-color:#F5BA42" class="md-whiteframe-3dp" layout="row" ng-click="filterBanjo()">
+                BANJOS
+            </md-button>
+            <md-button md-no-ink style="background-color:#F5BA42" class="md-whiteframe-3dp" layout="row" ng-click="filterMando()">
+                MANDOLINS
+            </md-button>
+            <md-button md-no-ink style="background-color:#F5BA42" class="md-whiteframe-3dp" layout="row" ng-click="filterOther()">
+                OTHER INSTRUMENTS
+            </md-button>
+            <md-button md-no-ink style="background-color:#F5BA42" class="md-whiteframe-3dp" layout="row" ng-click="goEvents()">
+                EVENTS
+            </md-button>
+        </md-content>
+    </md-sidenav>
+    <ui-view flex layout="column" md-swipe-right="toggleLeft()"></ui-view>
+</div>
 
 
-<div id="brands" layout="row" layout-align="space-around center" layout-padding>
+
+
+
+
+
+
+<div id="brands">
     <img src="img/bg/fret-shop.png" align="absmiddle"/> <img src="img/bg/hawthorne.png" align="absmiddle"/> <img src="img/bg/ozark.png" align="absmiddle"/>
 </div>
 <!--Map-->
-<div layout="row">
-    <iframe id="map_canvas1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3098.635899497353!2d-94.5983266!3d39.046420299999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0efc95e04c20b%3A0x337f5ed3ca65eeb!2s4448+Belleview+Ave%2C+Kansas+City%2C+MO+64111!5e0!3m2!1sen!2sus!4v1437852928078" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-<div id="footer" layout="row" layout-align="center center" layout-padding>
+<iframe id="map_canvas1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3098.635899497353!2d-94.5983266!3d39.046420299999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0efc95e04c20b%3A0x337f5ed3ca65eeb!2s4448+Belleview+Ave%2C+Kansas+City%2C+MO+64111!5e0!3m2!1sen!2sus!4v1437852928078" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+<div id="footer">
     <p>4448 Belleview | Kansas City, MO 64111 | 816-283-0400<br>
         11-6, Tues-Fri, 10-4 Sat, Closed Sun and Mon</p>
 </div>
@@ -98,23 +134,6 @@
         });
     });
 </script>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '1030518733661195',
-            xfbml      : true,
-            version    : 'v2.5'
-        });
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 </body>
@@ -125,6 +144,8 @@
 <script src="app/controllers/inventoryController.js"></script>
 <script src="app/controllers/itemController.js"></script>
 <script src="app/controllers/contactController.js"></script>
-<script src="app/services/inventoryService.js"></script>
 <script src="app/controllers/eventsController.js"></script>
+<script src="app/services/base.js"></script>
+<script src="app/services/inventoryService.js"></script>
+<script src="app/services/eventService.js"></script>
 </html>

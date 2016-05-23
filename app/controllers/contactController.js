@@ -1,28 +1,16 @@
 /**
  * Created by Timothy on 8/12/2015.
  */
-bfApp.controller('contactController', function($scope, $http, inventoryService) {
+bfApp.controller('contactController', function($scope, $http, inventoryService, $mdDialog) {
+        $scope.items = {};
+        $scope.itemsHolder = {};
         $scope.contact = {};
         $scope.items = {};
         var getItems = function (id) {
             console.log(id);
-            switch (id) {
-                case "Banjo":
-                    inventoryService.getBanjos().then(function (data) {
-                        $scope.items = data;
-                    })
-                    break;
-                case "Mandolin":
-                    inventoryService.getMandos().then(function (data) {
-                        $scope.items = data;
-                    });
-                    break;
-                case "Guitar":
-                    inventoryService.getGuitars().then(function (data) {
-                        $scope.items = data;
-                    });
-                    break;
-            }
+            inventoryService.getInventory().then(function (data) {
+                $scope.items = data;
+            });
         };
 
         $scope.inquiredItem = inventoryService.getInquiredItem();
@@ -71,25 +59,13 @@ bfApp.controller('contactController', function($scope, $http, inventoryService) 
         }
 
         $scope.sendEmail = function (contact) {
-            var request = {
-                url: 'php/Email.php',
-                method: 'POST',
-                data: contact
-            };
-
-            $http(request)
-                .success(function (data) {
-                    alert("Email Sent");
-                    $scope.contact.firstName = "";
-                    $scope.contact.lastName = "";
-                    $scope.contact.email = "";
-                    $scope.contact.body = "";
-                })
-                .error(function (data, status) {
-                });
-        }
+            $mdDialog.hide(contact);
+        };
         $scope.getItems = function (instrumentType) {
             getItems(instrumentType);
+        };
+        $scope.cancel = function(){
+            $mdDialog.cancel();
         }
     }
 );

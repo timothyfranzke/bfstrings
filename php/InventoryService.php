@@ -31,16 +31,16 @@ $jsonWriter = new JSONWriter();
 if( isset( $_GET['load'] ))
 {
 	$load = $_GET['load'];
-	if($load = 'banjos')
+	if($load == 'banjos')
 	{
 		echo "Going to LoadBanjos() dodio\n";
 		LoadBanjos();
 	}
-	if($load = 'guitars')
+	if($load == 'guitars')
 	{
 		LoadGuitars();
 	}
-	if($load = 'mandos')
+	if($load == 'mandos')
 	{
 		LoadMandos();
 	}
@@ -232,7 +232,7 @@ function GetGuitars()
 
 {
 
-    $query = "SELECT * FROM Inventory where Type = 2 AND Active = 1";
+    $query = "SELECT * FROM Inventory where Type = 2 AND Active = 1 ORDER BY id DESC";
 
     $results = mysql_query($query);
 
@@ -246,7 +246,7 @@ function GetBanjos()
 
 {
 
-    $query = "SELECT * FROM Inventory where Type = 1 AND Active = 1";
+    $query = "SELECT * FROM Inventory where Type = 1 AND Active = 1 ORDER BY id DESC";
 
     $results = mysql_query($query);
 
@@ -260,7 +260,7 @@ function GetMandolins()
 
 {
 
-    $query = "SELECT * FROM Inventory where Type = 3 AND Active = 1";
+    $query = "SELECT * FROM Inventory where Type = 3 AND Active = 1 ORDER BY id DESC";
 
     $results = mysql_query($query);
 
@@ -274,9 +274,10 @@ function GetAll()
 
 {
 
-    $query = "SELECT * FROM Inventory where Active = 1";
+    $query = "SELECT * FROM Inventory where Active = 1 ORDER BY id DESC";
 
     $results = mysql_query($query);
+
     return $results;
 
 }
@@ -397,7 +398,7 @@ function LoadBanjos()
 			$filename = "../img/inventory/banjos/" . $banjo->id . "/" . $oldId . ".jpg";
 			$image = imagecreatefromstring(file_get_contents($filename));
 			imagepng($image, '../img/inventory/' . $id . '/' . $i . ".png");
-			//make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
+			make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
 		}	
 	}
 }
@@ -429,7 +430,7 @@ function LoadGuitars()
 			$filename = "../img/inventory/guitars/" . $guitar->id . "/" . $oldId . ".jpg";
 			$image = imagecreatefromstring(file_get_contents($filename));
 			imagepng($image, '../img/inventory/' . $id . '/' . $i . ".png");
-			//make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
+			make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
 		}	
 	}
 }
@@ -461,7 +462,7 @@ function LoadMandos()
 			$filename = "../img/inventory/mandos/" . $mando->id . "/" . $oldId . ".jpg";
 			$image = imagecreatefromstring(file_get_contents($filename));
 			imagepng($image, '../img/inventory/' . $id . '/' . $i . ".png");
-			//make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
+			make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
 		}	
 	}
 }

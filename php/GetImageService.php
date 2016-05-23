@@ -72,7 +72,7 @@ function GetAdminImages($id)
 
 {
 
-    $query = "SELECT * FROM Image where folderId = " . $id;
+    $query = "SELECT * FROM Image where Active = 1 AND folderId = " . $id;
 
     $results = mysql_query($query);
 

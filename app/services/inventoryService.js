@@ -9,9 +9,10 @@ bfApp.factory('inventoryService', function ($http, $q, $sce) {
     var inquiredItem ={};
     return {
         getInventory : function(){
+			var time = new Date();
             var defer = $q.defer();
             var request = {
-                url: 'php/InventoryService.php?type=all',
+                url: 'php/InventoryService.php?type=all&ts=' + time.getTime(),
                 //url: 'inventory/banjos.json',
                 method: 'GET'
             };
@@ -37,10 +38,11 @@ bfApp.factory('inventoryService', function ($http, $q, $sce) {
             return defer.promise;
         },
         getItemById: function (id) {
+			var time = new Date();
             var defer = $q.defer();
             var item = {};
             var request = {
-                url: 'php/InventoryService.php?id=' + id,
+                url: 'php/InventoryService.php?id=' + id + '&ts=' + time.getTime(),
                 method: 'GET'
             };
             $http(request)
@@ -122,9 +124,10 @@ bfApp.factory('inventoryService', function ($http, $q, $sce) {
             return defer.promise;
         },
         getImage: function (id) {
+			var time = new Date();
             var defer = $q.defer();
             var request = {
-                url: 'php/GetImageService.php?id=' + id,
+                url: 'php/GetImageService.php?id=' + id + '&ts=' + time.getTime(),
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -140,10 +143,11 @@ bfApp.factory('inventoryService', function ($http, $q, $sce) {
             return defer.promise;
         },
         getAdminImage: function (id) {
+			var time = new Date();
             var defer = $q.defer();
             //var item = {};
             var request = {
-                url: 'php/GetImageService.php?admin=true&id=' + id,
+                url: 'php/GetImageService.php?admin=true&id=' + id + '&ts=' + time.getTime(),
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

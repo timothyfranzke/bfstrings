@@ -41,15 +41,15 @@ function CreateImage($image, $id, $index){
     mysql_query($query);
 
     file_put_contents('../img/inventory/' . $id . '/' . $index . '.png', $image);
-	//make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
+	make_thumb($image,'../img/inventory/' . $id . '/thumbs/' . $index . '.png', 135);
 
 }
 
 function make_thumb($src, $dest, $desired_width) {
 
 	/* read the source image */
-	error_log("image source:" . $dest);
-	$source_image = imagecreatefrompng($src);
+	error_log("image source:" . $src);
+	$source_image = imagecreatefromjpeg($src);
 	$width = imagesx($source_image);
 	$height = imagesy($source_image);
 	
